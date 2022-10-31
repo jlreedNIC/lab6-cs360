@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\User;
 use Hash;
+use DB;
 
 // use Illuminate\Http\Request;
 
@@ -67,7 +68,9 @@ class AuthController extends Controller
     {
         if(Auth::check())
         {
-            return view('real-dashboard');
+            $users = DB::table('users')->get();
+
+            return view('real-dashboard', ['users'=>$users]);
         }
   
         return redirect("login")->withSuccess('Opps! You do not have access');
