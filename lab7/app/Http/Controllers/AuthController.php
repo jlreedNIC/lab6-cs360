@@ -17,13 +17,13 @@ class AuthController extends Controller
     // view login page
     public function index()
     {
-        return view('real-login');
+        return view('auth.real-login');
     }
 
     // view registration page
     public function registration()
     {
-        return view('real-registration');
+        return view('auth.real-registration');
     }
 
     // get inputs from login page and redirect accordingly
