@@ -19,7 +19,7 @@
                     <div>
                         <div class="container-fluid">
                             <!-- <h2 style="text-align: center">User Table</h2> -->
-                            <form>
+                            <form action="{{ route('delete.post') }}" method="POST">
                             <table class="table">
                                 <thead>
                                     <tr>

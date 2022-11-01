@@ -15,4 +15,14 @@ class UserController extends Controller
 
         return view([AuthController::class, 'dashboard'], ['users'=>$users]);
     }
+
+    public function postDelete(Request $request)
+    {
+        print($request);
+        // $user_to_delete = $request->only('username');
+
+        DB::table('users')->where('id', $request)->delete();
+
+        return view([AuthController::class, 'dashboard']);
+    }
 }
