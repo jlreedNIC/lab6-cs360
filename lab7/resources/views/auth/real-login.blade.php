@@ -1,76 +1,67 @@
-@extends('layout')
+@extends('layouts.sample_layout')
+<title>513 Studios Login (lab9)</title>
 
-<title>Login</title>
 
-@section('content')
-<main class="login-form">
-    <div>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                    <div class="card-body">
-                        @if (session('success'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+@section('body_content')
+<body class="bg-primary">
+    <div class="unix-login">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <a href="index.html"><span>513 Studios</span></a>
+                        </div>
 
-                        @if (session('message'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('message') }}
-                            </div>
-                        @endif
+                        <div class="card-body">
+                            @if (session('success'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
 
-                    </div>
-                <div class="card">
-                    <div class="card-header">Login</div>
-                    <div class="card-body">
+                            @if (session('message'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+                        </div>
 
-                        <form action="{{ route('login.post') }}" method="POST">
-                            @csrf
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">username</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="username" class="form-control" name="username" required autofocus>
+                        <div class="login-form">
+                            <h4>Developer Login</h4>
+                            <form action="{{ route('login.post') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" placeholder="Username" name="username" id="username">
                                     @if ($errors->has('username'))
                                         <span class="text-danger">{{ $errors->first('username') }}</span>
                                     @endif
                                 </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" id="password" class="form-control" name="password" required>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" placeholder="Password" name="password" id="password">
                                     @if ($errors->has('password'))
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
-                            </div>
+                                <div class="checkbox">
+                                    <label class="pull-right">
+                                    <a href="{{ route('forget.password.get') }}">Forgotten Password?</a>
+									</label>
 
-                            <div class="form-group row">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
                                 
-                                <div class="col-md-1 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Login
-                                    </button>
+                                <div class="register-link m-t-15 text-center">
+                                    <p>Don't have account ? <a href="{{ route('register') }}"> Sign Up Here</a></p>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <a href="{{ route('forget.password.get') }}">Reset Password</a>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            
-                            </div>
-                        </form>
-                            
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </main>
 @endsection
